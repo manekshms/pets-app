@@ -16,9 +16,6 @@ pipeline {
       stage('Generate Jar') {
         steps {
           archiveArtifacts artifacts: 'target/*.jar'
-        }
-
-        steps {
             jacoco()
         }
       }
