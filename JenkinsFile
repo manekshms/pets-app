@@ -1,0 +1,25 @@
+pipeline {
+    stages {
+      stage('clean') {
+        steps {
+          sh "./mvnw clean"
+        }
+      }
+
+      stage('Install') {
+        steps {
+          sh "./mvnw install"
+        }
+      }
+
+      stage('Generate Jar') {
+        steps {
+          archiveArtifacts artifacts: 'target/*.jar'
+        }
+
+        steps {
+            jacoco()
+        }
+      }
+    }
+}
